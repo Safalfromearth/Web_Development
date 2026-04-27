@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#fce7f3">
+<title>Pages of My Heart</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg-solid:#fdf4ff;
+  --bg:linear-gradient(135deg,#fdf4ff 0%,#fce7f3 30%,#ede9fe 65%,#e0f2fe 100%);
+  --card:rgba(255,240,251,0.92);
+  --card2:rgba(237,233,254,0.9);
+  --card-border:#e879f9;
+  --shadow:#c026d3;
+  --text:#2d1b4e;
+  --text2:#7c3aed;
+  --text3:#a855f7;
+  --pink2:#ec4899;
+  --pink3:rgba(252,231,243,0.95);
+  --lav:#c4b5fd;
+  --lav2:#7c3aed;
+  --lav3:rgba(237,233,254,0.95);
+  --purple:#9333ea;
+  --line:rgba(232,121,249,0.25);
+  --nav-bg:rgba(253,244,255,0.96);
+  --nb-bg:rgba(253,244,255,0.96);
+}
+.dark{
+  --bg-solid:#0f0520;
+  --bg:linear-gradient(135deg,#0f0520 0%,#1a0a2e 30%,#1e1040 65%,#0a1628 100%);
+  --card:rgba(42,18,69,0.92);
+  --card2:rgba(52,24,96,0.9);
+  --card-border:#a855f7;
+  --shadow:#7c3aed;
+  --text:#f0e6ff;
+  --text2:#d8b4fe;
+  --text3:#a78bfa;
+  --pink2:#f472b6;
+  --pink3:rgba(80,7,36,0.95);
+  --lav:#7c3aed;
+  --lav2:#c4b5fd;
+  --lav3:rgba(46,16,101,0.95);
+  --purple:#a855f7;
+  --line:rgba(109,40,217,0.35);
+  --nav-bg:rgba(15,5,32,0.97);
+  --nb-bg:rgba(26,10,46,0.96);
+}
+html,body{min-height:100%;font-family:'Press Start 2P',monospace;background:var(--bg-solid);color:var(--text);overflow-x:hidden;transition:background .4s,color .4s;}
+body::before{content:'';position:fixed;inset:0;background:var(--bg);z-index:-1;transition:background .4s;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--lav);border-radius:3px;}
+
+/* === PIXEL BOX === */
+.pb{border:3px solid var(--card-border);box-shadow:4px 4px 0 var(--shadow);}
+.pb2{border:2px solid var(--card-border);box-shadow:3px 3px 0 var(--shadow);}
+
+/* === PIXEL BUTTON === */
+.px-btn{font-family:'Press Start 2P',monospace;border:3px solid var(--card-border);box-shadow:4px 4px 0 var(--shadow);cursor:pointer;transition:transform .07s,box-shadow .07s,filter .15s;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 16px;font-size:9px;letter-spacing:.5px;color:var(--text);-webkit-tap-highlight-color:transparent;}
+.px-btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--shadow);}
+.px-btn:hover{filter:brightness(1.08);}
+
+/* === ANIMATIONS === */
+@keyframes hb{0%,100%{transform:scale(1);}50%{transform:scale(1.25);}}
+@keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@keyframes screenin{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+@keyframes loadbar{0%{width:0}100%{width:100%}}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:0 0}}
+@keyframes fadeout{to{opacity:0;pointer-events:none;}}
+@keyframes riseup{0%{transform:translateY(0) scale(.8);opacity:0;}20%{opacity:1;}100%{transform:translateY(-70px) scale(1.3);opacity:0;}}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+.floating{animation:floaty 3s ease-in-out infinite;}
+.floating2{animation:floaty 3s ease-in-out infinite;animation-delay:.75s;}
+.floating3{animation:floaty 3s ease-in-out infinite;animation-delay:1.5s;}
+.floating4{animation:floaty 3s ease-in-out infinite;animation-delay:2.25s;}
+.beat{animation:hb var(--dur,.8s) ease-in-out infinite;animation-delay:var(--del,0s);}
+
+/* =====================
+   PIXEL FLOWER SPRITES
+   ===================== */
+.f-rose{display:inline-block;image-rendering:pixelated;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 12'%3E%3Crect x='4' y='8' width='2' height='4' fill='%2316a34a'/%3E%3Crect x='3' y='10' width='2' height='1' fill='%2316a34a'/%3E%3Crect x='2' y='2' width='6' height='6' fill='%23f43f5e'/%3E%3Crect x='3' y='1' width='4' height='2' fill='%23fb7185'/%3E%3Crect x='1' y='3' width='2' height='4' fill='%23fb7185'/%3E%3Crect x='7' y='3' width='2' height='4' fill='%23fb7185'/%3E%3Crect x='3' y='7' width='4' height='2' fill='%23e11d48'/%3E%3Crect x='4' y='3' width='2' height='2' fill='%23fda4af'/%3E%3C/svg%3E") center/contain no-repeat;}
+.f-sun{display:inline-block;image-rendering:pixelated;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 12'%3E%3Crect x='4' y='8' width='2' height='4' fill='%2316a34a'/%3E%3Crect x='4' y='4' width='2' height='2' fill='%2392400e'/%3E%3Crect x='2' y='3' width='2' height='2' fill='%23fbbf24'/%3E%3Crect x='6' y='3' width='2' height='2' fill='%23fbbf24'/%3E%3Crect x='3' y='1' width='2' height='2' fill='%23fbbf24'/%3E%3Crect x='5' y='1' width='2' height='2' fill='%23fbbf24'/%3E%3Crect x='2' y='5' width='2' height='2' fill='%23fbbf24'/%3E%3Crect x='6' y='5' width='2' height='2' fill='%23fbbf24'/%3E%3Crect x='3' y='7' width='2' height='2' fill='%23fbbf24'/%3E%3Crect x='5' y='7' width='2' height='2' fill='%23fbbf24'/%3E%3C/svg%3E") center/contain no-repeat;}
+.f-lav{display:inline-block;image-rendering:pixelated;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 12'%3E%3Crect x='3' y='7' width='2' height='5' fill='%2316a34a'/%3E%3Crect x='2' y='5' width='2' height='2' fill='%23a78bfa'/%3E%3Crect x='4' y='4' width='2' height='2' fill='%23c4b5fd'/%3E%3Crect x='2' y='2' width='2' height='3' fill='%238b5cf6'/%3E%3Crect x='4' y='1' width='2' height='3' fill='%23a78bfa'/%3E%3Crect x='3' y='6' width='2' height='2' fill='%23c4b5fd'/%3E%3C/svg%3E") center/contain no-repeat;}
+.f-daisy{display:inline-block;image-rendering:pixelated;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 12'%3E%3Crect x='4' y='8' width='2' height='4' fill='%2316a34a'/%3E%3Crect x='4' y='4' width='2' height='2' fill='%23fef08a'/%3E%3Crect x='3' y='2' width='2' height='2' fill='%23fde68a'/%3E%3Crect x='5' y='2' width='2' height='2' fill='%23fde68a'/%3E%3Crect x='2' y='4' width='2' height='2' fill='%23fde68a'/%3E%3Crect x='6' y='4' width='2' height='2' fill='%23fde68a'/%3E%3Crect x='3' y='6' width='2' height='2' fill='%23fde68a'/%3E%3Crect x='5' y='6' width='2' height='2' fill='%23fde68a'/%3E%3C/svg%3E") center/contain no-repeat;}
+.f-tulip{display:inline-block;image-rendering:pixelated;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 12'%3E%3Crect x='3' y='7' width='2' height='5' fill='%2316a34a'/%3E%3Crect x='2' y='9' width='2' height='1' fill='%2316a34a'/%3E%3Crect x='2' y='3' width='4' height='5' fill='%23f472b6'/%3E%3Crect x='1' y='5' width='2' height='3' fill='%23f9a8d4'/%3E%3Crect x='5' y='5' width='2' height='3' fill='%23f9a8d4'/%3E%3Crect x='2' y='2' width='4' height='2' fill='%23f9a8d4'/%3E%3C/svg%3E") center/contain no-repeat;}
+.f-cherry{display:inline-block;image-rendering:pixelated;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Crect x='5' y='4' width='2' height='4' fill='%2316a34a'/%3E%3Crect x='5' y='2' width='1' height='3' fill='%2316a34a'/%3E%3Crect x='6' y='1' width='3' height='2' fill='%2316a34a'/%3E%3Crect x='1' y='6' width='4' height='4' fill='%23f43f5e'/%3E%3Crect x='0' y='7' width='2' height='2' fill='%23fb7185'/%3E%3Crect x='7' y='5' width='4' height='4' fill='%23e11d48'/%3E%3Crect x='8' y='6' width='2' height='2' fill='%23fb7185'/%3E%3C/svg%3E") center/contain no-repeat;}
+
+/* =====================
+   SPLASH
+   ===================== */
+#splash{position:fixed;inset:0;z-index:999;background:var(--bg-solid);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px;}
+#splash::before{content:'';position:fixed;inset:0;background:var(--bg);z-index:-1;}
+.splash-heart{font-size:58px;line-height:1;animation:hb .75s infinite;filter:drop-shadow(0 0 14px #f472b6);}
+.splash-title{font-size:clamp(9px,3.5vw,14px);background:linear-gradient(135deg,#ec4899,#9333ea,#7c3aed,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center;letter-spacing:1px;line-height:2;}
+.splash-sub{font-size:8px;color:var(--purple);letter-spacing:3px;text-align:center;}
+.bar-wrap{width:220px;height:16px;border:3px solid var(--card-border);background:rgba(255,255,255,.2);overflow:hidden;}
+.bar-fill{height:100%;background:linear-gradient(90deg,#f9a8d4,#c4b5fd,#93c5fd,#f9a8d4);background-size:300% 100%;width:0;animation:loadbar 2.6s ease-in-out forwards,shimmer 1.2s linear infinite;}
+.splash-out{animation:fadeout .5s forwards;}
+/* rising hearts on splash */
+.fh{position:absolute;animation:riseup 3s ease-in infinite;opacity:0;font-size:14px;}
+
+/* =====================
+   APP
+   ===================== */
+#app{min-height:100vh;max-width:520px;margin:0 auto;display:none;flex-direction:column;padding-bottom:90px;}
+#app.show{display:flex;}
+@media(min-width:600px){#app{max-width:620px;}}
+
+/* =====================
+   TOP NAV
+   ===================== */
+.top-nav{background:var(--nav-bg);border-bottom:3px solid var(--card-border);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+.nav-logo{font-size:clamp(6px,2.2vw,10px);background:linear-gradient(90deg,#ec4899,#9333ea,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:1px;}
+.theme-btn{background:var(--card);border:2px solid var(--card-border);box-shadow:2px 2px 0 var(--shadow);cursor:pointer;font-size:16px;padding:7px 10px;transition:transform .07s;-webkit-tap-highlight-color:transparent;}
+.theme-btn:active{transform:translate(2px,2px);}
+
+/* =====================
+   SCREENS
+   ===================== */
+.screen{display:none;flex-direction:column;padding:16px 14px 10px;gap:16px;}
+.screen.active{display:flex;animation:screenin .3s ease;}
+
+/* =====================
+   HOME
+   ===================== */
+.home-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(253,244,255,.95) 0%,rgba(252,231,243,.95) 35%,rgba(237,233,254,.95) 65%,rgba(224,242,254,.95) 100%);border:3px solid var(--card-border);box-shadow:5px 5px 0 var(--shadow);padding:26px 16px;display:flex;flex-direction:column;align-items:center;gap:13px;text-align:center;}
+.dark .home-hero{background:linear-gradient(135deg,rgba(42,18,69,.95) 0%,rgba(80,7,36,.5) 35%,rgba(30,16,64,.95) 65%,rgba(10,22,40,.95) 100%);}
+/* ghost hearts behind hero */
+.ghost-hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.gh{position:absolute;font-size:20px;opacity:.12;animation:hb var(--d,.9s) ease-in-out infinite,floaty var(--f,4s) ease-in-out infinite;animation-delay:var(--dl,0s);}
+/* hero hearts row */
+.hero-hearts{display:flex;gap:10px;align-items:center;justify-content:center;}
+.big-h{font-size:52px;animation:hb .75s infinite;filter:drop-shadow(0 0 12px #f472b6);}
+.med-h{font-size:30px;animation:hb .75s infinite;animation-delay:.2s;filter:drop-shadow(0 0 6px #c4b5fd);}
+.sml-h{font-size:20px;animation:hb .75s infinite;animation-delay:.4s;}
+.home-title{font-size:clamp(9px,3vw,13px);background:linear-gradient(135deg,#ec4899,#9333ea,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:2;letter-spacing:1px;}
+.home-sub{font-size:7px;color:var(--text3);line-height:2.3;}
+.hero-flowers{display:flex;gap:8px;align-items:flex-end;justify-content:center;}
+
+.stats-bar{background:linear-gradient(90deg,rgba(249,168,212,.3),rgba(196,181,253,.3),rgba(147,197,253,.3));border:2px solid var(--card-border);box-shadow:3px 3px 0 var(--shadow);padding:14px;display:flex;align-items:center;justify-content:space-around;}
+.dark .stats-bar{background:linear-gradient(90deg,rgba(131,24,67,.3),rgba(76,29,149,.3),rgba(12,36,89,.3));}
+.stat{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.stat-num{font-size:20px;color:var(--pink2);}
+.stat-lbl{font-size:6px;color:var(--text3);}
+
+.home-btns{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.home-btn{padding:22px 8px;flex-direction:column;gap:10px;}
+.home-btn.write{background:linear-gradient(135deg,#fce7f3,#fda4af,#fb7185);border-color:#f43f5e;box-shadow:4px 4px 0 #be123c;}
+.dark .home-btn.write{background:linear-gradient(135deg,#500724,#881337,#9f1239);}
+.home-btn.view{background:linear-gradient(135deg,#ede9fe,#c4b5fd,#a78bfa);border-color:#7c3aed;box-shadow:4px 4px 0 #5b21b6;}
+.dark .home-btn.view{background:linear-gradient(135deg,#2e1065,#4c1d95,#5b21b6);}
+.home-btn .btn-icon{font-size:28px;}
+.home-btn .btn-lbl{font-size:9px;}
+
+/* deco dots */
+.deco-band{display:flex;gap:5px;align-items:center;justify-content:center;flex-wrap:wrap;padding:6px 0;}
+.dot{width:8px;height:8px;display:inline-block;border-radius:1px;}
+.dot-p{background:#ec4899;}.dot-l{background:#7c3aed;}.dot-y{background:#f59e0b;}.dot-g{background:#22c55e;}.dot-b{background:#38bdf8;}.dot-r{background:#fb7185;}.dot-o{background:#f97316;}
+
+/* bottom flower garden */
+.flower-garden{display:flex;gap:8px;align-items:flex-end;justify-content:center;padding:8px 0 4px;}
+
+/* =====================
+   WRITE
+   ===================== */
+.sec-label{font-size:8px;color:var(--pink2);display:flex;align-items:center;gap:6px;}
+.write-input{font-family:'Press Start 2P',monospace;background:linear-gradient(90deg,rgba(252,231,243,.92),rgba(237,233,254,.92));border:3px solid var(--card-border);box-shadow:3px 3px 0 var(--shadow);padding:14px 12px;font-size:8px;color:var(--text);outline:none;width:100%;letter-spacing:.5px;}
+.dark .write-input{background:linear-gradient(90deg,rgba(80,7,36,.8),rgba(46,16,101,.8));}
+.write-input:focus{border-color:var(--pink2);}
+.write-input::placeholder{color:var(--text3);opacity:.7;}
+.notebook{background:linear-gradient(135deg,rgba(253,244,255,.97),rgba(240,231,255,.97),rgba(224,242,254,.97));border:3px solid var(--card-border);box-shadow:5px 5px 0 var(--shadow);position:relative;overflow:hidden;padding:16px 14px 14px 44px;}
+.dark .notebook{background:linear-gradient(135deg,rgba(26,10,46,.97),rgba(30,16,64,.97),rgba(10,22,40,.97));}
+.notebook::before{content:'';position:absolute;left:32px;top:0;bottom:0;width:2px;background:var(--pink2);opacity:.45;}
+.nb-lines{position:absolute;top:0;left:44px;right:14px;bottom:0;background:repeating-linear-gradient(transparent,transparent 31px,var(--line) 31px,var(--line) 32px);pointer-events:none;}
+.nb-textarea{font-family:'Press Start 2P',monospace;font-size:8px;line-height:2.5;color:var(--text);background:transparent;border:none;outline:none;resize:none;width:100%;min-height:280px;position:relative;z-index:1;letter-spacing:.5px;word-break:break-word;}
+.nb-textarea::placeholder{color:var(--text3);opacity:.8;}
+@media(min-width:480px){.nb-textarea{font-size:9px;min-height:320px;}}
+.nb-footer{display:flex;justify-content:space-between;align-items:center;padding-top:8px;position:relative;z-index:1;}
+.char-count{font-size:6px;color:var(--text3);}
+.write-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.btn-back{background:linear-gradient(135deg,var(--lav3),rgba(196,181,253,.6));font-size:8px;}
+.btn-clear{background:rgba(255,255,255,.5);font-size:8px;}
+.dark .btn-clear{background:rgba(255,255,255,.08);}
+.btn-save{background:linear-gradient(135deg,#ec4899,#a855f7);color:#fff;font-size:9px;border-color:#9333ea;box-shadow:4px 4px 0 #6b21a8;}
+
+/* =====================
+   VIEW
+   ===================== */
+.view-top{display:flex;align-items:center;justify-content:space-between;}
+.pages-list{display:flex;flex-direction:column;gap:10px;}
+.empty-wrap{background:linear-gradient(135deg,rgba(253,244,255,.92),rgba(237,233,254,.92));border:3px solid var(--card-border);box-shadow:4px 4px 0 var(--shadow);padding:36px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;}
+.dark .empty-wrap{background:linear-gradient(135deg,rgba(42,18,69,.92),rgba(30,16,64,.92));}
+.empty-msg{font-size:8px;color:var(--text2);line-height:2.5;}
+.page-card{border:3px solid var(--card-border);box-shadow:4px 4px 0 var(--shadow);padding:14px 12px;cursor:pointer;display:flex;gap:10px;align-items:flex-start;transition:transform .07s,box-shadow .07s;-webkit-tap-highlight-color:transparent;}
+.page-card:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--shadow);}
+.page-card:hover{filter:brightness(1.05);}
+.cc0{background:linear-gradient(135deg,rgba(252,231,243,.95),rgba(253,244,255,.95));border-left:7px solid #ec4899;}
+.cc1{background:linear-gradient(135deg,rgba(237,233,254,.95),rgba(245,243,255,.95));border-left:7px solid #7c3aed;}
+.cc2{background:linear-gradient(135deg,rgba(254,243,199,.6),rgba(255,251,235,.95));border-left:7px solid #d97706;}
+.cc3{background:linear-gradient(135deg,rgba(224,242,254,.6),rgba(240,249,255,.95));border-left:7px solid #0284c7;}
+.cc4{background:linear-gradient(135deg,rgba(187,247,208,.5),rgba(240,253,244,.95));border-left:7px solid #16a34a;}
+.dark .cc0{background:linear-gradient(135deg,rgba(80,7,36,.8),rgba(42,18,69,.8));border-left-color:#f472b6;}
+.dark .cc1{background:linear-gradient(135deg,rgba(46,16,101,.8),rgba(30,16,64,.8));border-left-color:#c4b5fd;}
+.dark .cc2{background:linear-gradient(135deg,rgba(67,20,7,.7),rgba(120,53,15,.5));border-left-color:#fbbf24;}
+.dark .cc3{background:linear-gradient(135deg,rgba(8,47,73,.7),rgba(12,74,110,.5));border-left-color:#38bdf8;}
+.dark .cc4{background:linear-gradient(135deg,rgba(5,46,22,.7),rgba(20,83,45,.5));border-left-color:#4ade80;}
+.card-icon{font-size:24px;flex-shrink:0;margin-top:2px;}
+.card-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;}
+.card-title{font-size:9px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.card-preview{font-size:6px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.card-date{font-size:6px;color:var(--pink2);}
+.card-del{background:rgba(252,165,165,.4);border:2px solid var(--card-border);box-shadow:2px 2px 0 var(--shadow);cursor:pointer;font-family:'Press Start 2P',monospace;font-size:12px;padding:8px 10px;flex-shrink:0;margin-top:2px;transition:transform .07s;color:var(--text);-webkit-tap-highlight-color:transparent;}
+.card-del:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--shadow);}
+.card-del:hover{background:rgba(252,165,165,.8);}
+
+/* =====================
+   READ
+   ===================== */
+.read-paper{background:linear-gradient(135deg,rgba(253,244,255,.97),rgba(237,233,254,.97),rgba(224,242,254,.97));border:3px solid var(--card-border);box-shadow:5px 5px 0 var(--shadow);padding:18px 16px 16px 44px;position:relative;overflow:hidden;}
+.dark .read-paper{background:linear-gradient(135deg,rgba(26,10,46,.97),rgba(30,16,64,.97),rgba(10,22,40,.97));}
+.read-paper::before{content:'';position:absolute;left:32px;top:0;bottom:0;width:2px;background:var(--pink2);opacity:.45;}
+.rlines{position:absolute;top:0;left:44px;right:16px;bottom:0;background:repeating-linear-gradient(transparent,transparent 31px,var(--line) 31px,var(--line) 32px);pointer-events:none;}
+.read-title-txt{font-size:11px;background:linear-gradient(90deg,var(--pink2),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;word-break:break-word;position:relative;z-index:1;}
+.read-body{font-size:8px;color:var(--text);line-height:2.6;white-space:pre-wrap;word-break:break-word;position:relative;z-index:1;}
+@media(min-width:480px){.read-body{font-size:9px;}}
+.read-meta{font-size:6px;color:var(--text3);margin-top:16px;position:relative;z-index:1;}
+.read-art{display:flex;gap:8px;justify-content:flex-end;margin-top:12px;position:relative;z-index:1;}
+.read-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.btn-del-r{background:rgba(252,165,165,.45);font-size:8px;}
+
+/* =====================
+   BOTTOM NAV
+   ===================== */
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;background:var(--nav-bg);border-top:3px solid var(--card-border);display:flex;z-index:50;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+@media(min-width:600px){.bottom-nav{max-width:620px;}}
+.bnav-btn{flex:1;font-family:'Press Start 2P',monospace;background:transparent;border:none;border-right:2px solid var(--card-border);padding:12px 4px;font-size:7px;color:var(--text3);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent;}
+.bnav-btn:last-child{border-right:none;}
+.bnav-btn.active{background:linear-gradient(135deg,rgba(249,168,212,.3),rgba(196,181,253,.3));color:var(--pink2);}
+.bnav-btn:hover{background:rgba(196,181,253,.2);}
+.bnav-icon{font-size:20px;}
+
+/* =====================
+   CONFIRM
+   ===================== */
+.confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:200;padding:20px;backdrop-filter:blur(4px);}
+.confirm-overlay.open{display:flex;}
+.confirm-box{background:linear-gradient(135deg,rgba(253,244,255,.99),rgba(237,233,254,.99));border:4px solid var(--card-border);box-shadow:6px 6px 0 var(--shadow);padding:28px 22px;max-width:300px;width:100%;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;}
+.dark .confirm-box{background:linear-gradient(135deg,rgba(26,10,46,.99),rgba(30,16,64,.99));}
+.confirm-msg{font-size:8px;color:var(--text);line-height:2.4;}
+.confirm-btns{display:flex;gap:12px;}
+.btn-yes{background:linear-gradient(135deg,#fca5a5,#f87171);font-size:8px;border-color:#ef4444;box-shadow:3px 3px 0 #b91c1c;}
+.btn-no{background:linear-gradient(135deg,var(--lav3),var(--lav));font-size:8px;}
+
+/* =====================
+   TOAST
+   ===================== */
+.toast{position:fixed;top:70px;left:50%;transform:translateX(-50%) translateY(-20px);background:linear-gradient(135deg,#ec4899,#a855f7);color:#fff;font-family:'Press Start 2P',monospace;font-size:8px;padding:10px 18px;border:2px solid rgba(255,255,255,.3);box-shadow:3px 3px 0 rgba(0,0,0,.2);opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;z-index:300;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash" style="position:relative;overflow:hidden;">
+  <!-- rising hearts -->
+  <span class="fh" style="left:8%;animation-delay:0s;">♥</span>
+  <span class="fh" style="left:28%;animation-delay:.6s;font-size:18px;">♥</span>
+  <span class="fh" style="left:52%;animation-delay:1.1s;">♥</span>
+  <span class="fh" style="left:74%;animation-delay:.3s;font-size:10px;">♥</span>
+  <span class="fh" style="left:90%;animation-delay:1.7s;font-size:16px;">♥</span>
+
+  <div style="display:flex;gap:10px;align-items:flex-end;justify-content:center;">
+    <div class="f-rose floating" style="width:36px;height:44px;"></div>
+    <div class="f-tulip floating2" style="width:30px;height:44px;"></div>
+    <div class="f-sun floating3" style="width:36px;height:44px;"></div>
+  </div>
+
+  <div class="splash-heart">♥</div>
+  <div class="splash-title">Pages of My Heart</div>
+  <div class="splash-sub">~ Safal</div>
+
+  <div style="display:flex;gap:8px;align-items:flex-end;justify-content:center;margin-top:4px;">
+    <div class="f-daisy floating" style="width:30px;height:38px;"></div>
+    <div class="f-cherry floating2" style="width:32px;height:36px;"></div>
+    <div class="f-lav floating3" style="width:26px;height:42px;"></div>
+    <div class="f-daisy floating4" style="width:28px;height:36px;"></div>
+  </div>
+
+  <div class="bar-wrap" style="margin-top:10px;"><div class="bar-fill"></div></div>
+  <div style="font-size:7px;color:var(--text3);margin-top:6px;letter-spacing:1px;">loading your heart...</div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- APP -->
+<div id="app">
+
+  <!-- TOP NAV -->
+  <div class="top-nav">
+    <div class="nav-logo">Pages of My Heart</div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <div style="display:flex;gap:4px;align-items:flex-end;">
+        <div class="f-tulip" style="width:18px;height:24px;"></div>
+        <div class="f-daisy" style="width:18px;height:22px;"></div>
+        <div class="f-lav" style="width:16px;height:24px;"></div>
+        <div class="f-rose" style="width:18px;height:22px;"></div>
+      </div>
+      <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">☀</button>
+    </div>
+  </div>
+
+  <!-- === HOME === -->
+  <div class="screen active" id="homeScreen">
+    <div class="home-hero pb">
+      <!-- ghost hearts -->
+      <div class="ghost-hearts">
+        <span class="gh" style="left:4%;top:8%;--d:.9s;--f:4s;--dl:0s;font-size:22px;">♥</span>
+        <span class="gh" style="right:6%;top:15%;--d:.7s;--f:5s;--dl:.4s;font-size:14px;">♥</span>
+        <span class="gh" style="left:18%;bottom:12%;--d:1s;--f:3.5s;--dl:.8s;font-size:18px;">♥</span>
+        <span class="gh" style="right:14%;bottom:8%;--d:.85s;--f:4.5s;--dl:1.2s;font-size:28px;">♥</span>
+        <span class="gh" style="left:42%;top:4%;--d:.8s;--f:6s;--dl:.6s;font-size:12px;">♥</span>
+        <span class="gh" style="right:35%;bottom:20%;--d:.95s;--f:3.8s;--dl:1.5s;font-size:16px;">♥</span>
+      </div>
+
+      <div class="hero-hearts">
+        <span class="sml-h" style="animation-delay:.5s;">♥</span>
+        <div class="f-rose floating" style="width:32px;height:42px;"></div>
+        <span class="med-h" style="animation-delay:.2s;">♥</span>
+        <div class="f-tulip floating2" style="width:28px;height:40px;"></div>
+        <span class="big-h">♥</span>
+        <div class="f-sun floating3" style="width:30px;height:40px;"></div>
+        <span class="med-h" style="animation-delay:.4s;">♥</span>
+        <div class="f-lav floating4" style="width:24px;height:38px;"></div>
+        <span class="sml-h" style="animation-delay:.7s;">♥</span>
+      </div>
+
+      <div class="home-title">Pages of My Heart</div>
+      <div class="home-sub">your words live here forever ♥<br>write anything, keep everything</div>
+
+      <div class="hero-flowers">
+        <div class="f-daisy floating" style="width:26px;height:34px;"></div>
+        <span class="beat" style="--dur:.7s;--del:.1s;font-size:14px;color:var(--pink2);">♥</span>
+        <div class="f-cherry floating2" style="width:28px;height:32px;"></div>
+        <span class="beat" style="--dur:.8s;--del:.3s;font-size:12px;color:#a855f7;">♥</span>
+        <div class="f-tulip floating3" style="width:24px;height:36px;"></div>
+        <span class="beat" style="--dur:.75s;--del:.5s;font-size:16px;color:#fb7185;">♥</span>
+        <div class="f-rose floating4" style="width:26px;height:34px;"></div>
+        <span class="beat" style="--dur:.85s;--del:.7s;font-size:10px;color:#60a5fa;">♥</span>
+        <div class="f-sun floating" style="width:26px;height:34px;"></div>
+      </div>
+    </div>
+
+    <div class="stats-bar pb2">
+      <div class="stat">
+        <div class="stat-num" id="statPages">0</div>
+        <div class="stat-lbl">pages</div>
+      </div>
+      <div class="stat">
+        <span class="beat" style="--dur:.75s;font-size:24px;color:var(--pink2);">♥</span>
+        <div class="stat-lbl">memories</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="statWords">0</div>
+        <div class="stat-lbl">words</div>
+      </div>
+    </div>
+
+    <div class="home-btns">
+      <button class="px-btn home-btn write pb" onclick="goWrite()">
+        <span class="btn-icon">✏</span>
+        <span class="btn-lbl">WRITE</span>
+      </button>
+      <button class="px-btn home-btn view pb" onclick="goView()">
+        <span class="btn-icon">📖</span>
+        <span class="btn-lbl">VIEW</span>
+      </button>
+    </div>
+
+    <div class="deco-band">
+      <div class="dot dot-r"></div><div class="dot dot-p"></div><div class="dot dot-l"></div><div class="dot dot-b"></div>
+      <div class="dot dot-g"></div><div class="dot dot-y"></div><div class="dot dot-o"></div><div class="dot dot-r"></div>
+      <div class="dot dot-p"></div><div class="dot dot-l"></div><div class="dot dot-b"></div>
+    </div>
+
+    <div class="flower-garden">
+      <div class="f-tulip floating" style="width:24px;height:34px;"></div>
+      <div class="f-daisy floating2" style="width:22px;height:30px;"></div>
+      <span class="beat" style="--dur:.8s;--del:.1s;font-size:14px;color:var(--pink2);">♥</span>
+      <div class="f-cherry floating3" style="width:26px;height:30px;"></div>
+      <span class="beat" style="--dur:.7s;--del:.4s;font-size:10px;color:#a855f7;">♥</span>
+      <div class="f-sun floating4" style="width:26px;height:34px;"></div>
+      <span class="beat" style="--dur:.9s;--del:.6s;font-size:12px;color:#fb7185;">♥</span>
+      <div class="f-lav floating" style="width:20px;height:34px;"></div>
+      <div class="f-rose floating2" style="width:24px;height:32px;"></div>
+    </div>
+  </div><!-- /home -->
+
+  <!-- === WRITE === -->
+  <div class="screen" id="writeScreen">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div class="sec-label">
+        <span class="beat" style="--dur:.8s;font-size:14px;color:var(--pink2);">♥</span>
+        new page
+      </div>
+      <div style="display:flex;gap:5px;align-items:flex-end;">
+        <div class="f-rose" style="width:20px;height:26px;"></div>
+        <div class="f-tulip" style="width:18px;height:26px;"></div>
+        <div class="f-daisy" style="width:20px;height:24px;"></div>
+        <div class="f-lav" style="width:18px;height:26px;"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-label" style="margin-bottom:8px;font-size:7px;color:var(--text3);">✦ page title</div>
+      <input class="write-input pb2" id="pageTitle" placeholder="name this page..." maxlength="50">
+    </div>
+
+    <div>
+      <div class="sec-label" style="margin-bottom:8px;font-size:7px;color:var(--text3);">✦ your feelings go here ♥</div>
+      <div class="notebook">
+        <div class="nb-lines"></div>
+        <textarea class="nb-textarea" id="pageContent" placeholder="let your heart speak freely... ♥"></textarea>
+        <div class="nb-footer">
+          <div class="char-count" id="charCount">0 chars</div>
+          <div style="display:flex;gap:5px;align-items:flex-end;">
+            <div class="f-cherry" style="width:16px;height:16px;"></div>
+            <span class="beat" style="--dur:.8s;font-size:11px;color:var(--pink2);">♥</span>
+            <div class="f-sun" style="width:16px;height:18px;"></div>
+            <span class="beat" style="--dur:.7s;--del:.3s;font-size:9px;color:#a855f7;">♥</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="write-actions">
+      <button class="px-btn btn-back pb2" onclick="goHome()">← BACK</button>
+      <button class="px-btn btn-clear pb2" onclick="clearWrite()">✕ CLEAR</button>
+      <button class="px-btn btn-save pb" onclick="savePage()">✓ SAVE ♥</button>
+    </div>
+
+    <div class="deco-band">
+      <div class="dot dot-p"></div><div class="dot dot-l"></div><div class="dot dot-y"></div>
+      <div class="dot dot-g"></div><div class="dot dot-r"></div><div class="dot dot-b"></div><div class="dot dot-o"></div>
+    </div>
+
+    <div class="flower-garden">
+      <div class="f-daisy floating" style="width:22px;height:28px;"></div>
+      <span class="beat" style="--dur:.8s;font-size:12px;color:var(--pink2);">♥</span>
+      <div class="f-sun floating2" style="width:24px;height:30px;"></div>
+      <span class="beat" style="--dur:.7s;--del:.4s;font-size:10px;color:#a855f7;">♥</span>
+      <div class="f-lav floating3" style="width:20px;height:32px;"></div>
+      <span class="beat" style="--dur:.9s;--del:.7s;font-size:8px;color:#fb7185;">♥</span>
+      <div class="f-cherry floating4" style="width:22px;height:28px;"></div>
+    </div>
+  </div><!-- /write -->
+
+  <!-- === VIEW === -->
+  <div class="screen" id="viewScreen">
+    <div class="view-top">
+      <div class="sec-label" style="font-size:10px;">
+        <span class="beat" style="--dur:.8s;font-size:16px;color:var(--pink2);">♥</span>
+        my pages
+      </div>
+      <div style="display:flex;gap:5px;align-items:flex-end;">
+        <div class="f-sun" style="width:20px;height:26px;"></div>
+        <div class="f-cherry" style="width:22px;height:24px;"></div>
+        <div class="f-rose" style="width:20px;height:26px;"></div>
+      </div>
+    </div>
+    <div class="pages-list" id="pagesList"></div>
+    <div class="deco-band" style="margin-top:4px;">
+      <div class="dot dot-l"></div><div class="dot dot-p"></div><div class="dot dot-g"></div>
+      <div class="dot dot-y"></div><div class="dot dot-b"></div><div class="dot dot-r"></div><div class="dot dot-o"></div>
+    </div>
+  </div><!-- /view -->
+
+  <!-- === READ === -->
+  <div class="screen" id="readScreen">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div class="sec-label">
+        <span class="beat" style="--dur:.8s;font-size:14px;color:var(--pink2);">♥</span>
+        reading
+      </div>
+      <div style="display:flex;gap:5px;align-items:flex-end;">
+        <div class="f-rose" style="width:20px;height:26px;"></div>
+        <div class="f-lav" style="width:18px;height:26px;"></div>
+        <div class="f-daisy" style="width:20px;height:24px;"></div>
+      </div>
+    </div>
+    <div class="read-paper">
+      <div class="rlines"></div>
+      <div class="read-title-txt" id="readTitle"></div>
+      <div class="read-body" id="readBody"></div>
+      <div class="read-meta" id="readMeta"></div>
+      <div class="read-art">
+        <div class="f-cherry" style="width:18px;height:20px;"></div>
+        <span class="beat" style="--dur:.8s;font-size:12px;color:var(--pink2);">♥</span>
+        <div class="f-tulip" style="width:18px;height:22px;"></div>
+        <span class="beat" style="--dur:.7s;--del:.3s;font-size:10px;color:#a855f7;">♥</span>
+        <div class="f-sun" style="width:18px;height:20px;"></div>
+      </div>
+    </div>
+    <div class="read-actions">
+      <button class="px-btn btn-back pb2" onclick="goView()">← BACK</button>
+      <button class="px-btn btn-del-r pb2" onclick="promptDelete(currentId)">🗑 DELETE</button>
+    </div>
+    <div class="deco-band">
+      <div class="dot dot-p"></div><div class="dot dot-y"></div><div class="dot dot-l"></div>
+      <div class="dot dot-g"></div><div class="dot dot-r"></div><div class="dot dot-b"></div>
+    </div>
+  </div><!-- /read -->
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav">
+    <button class="bnav-btn active" id="bn-home" onclick="goHome()">
+      <span class="bnav-icon">🏠</span><span>HOME</span>
+    </button>
+    <button class="bnav-btn" id="bn-write" onclick="goWrite()">
+      <span class="bnav-icon">✏</span><span>WRITE</span>
+    </button>
+    <button class="bnav-btn" id="bn-view" onclick="goView()">
+      <span class="bnav-icon">📖</span><span>PAGES</span>
+    </button>
+  </div>
+
+</div><!-- /app -->
+
+<!-- CONFIRM -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <span class="beat" style="--dur:.75s;font-size:32px;color:var(--pink2);">♥</span>
+    <div style="display:flex;gap:8px;justify-content:center;align-items:flex-end;">
+      <div class="f-rose" style="width:28px;height:36px;"></div>
+      <div class="f-tulip" style="width:24px;height:36px;"></div>
+      <div class="f-daisy" style="width:26px;height:32px;"></div>
+      <div class="f-sun" style="width:28px;height:34px;"></div>
+    </div>
+    <div class="confirm-msg">are you sure?<br>this page will be<br>gone forever ♥</div>
+    <div class="confirm-btns">
+      <button class="px-btn btn-yes pb2" id="confirmYes">yes 🗑</button>
+      <button class="px-btn btn-no pb2" onclick="closeConfirm()">no ♥</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORE='pomh_pages_v3';
+let pages=[],currentId=null,deleteId=null,isDark=false;
+
+function load(){
+  try{pages=JSON.parse(localStorage.getItem(STORE))||[];}catch(e){pages=[];}
+  try{isDark=localStorage.getItem('pomh_dark')==='1';}catch(e){}
+  if(isDark){document.documentElement.classList.add('dark');document.getElementById('themeBtn').textContent='☾';}
+}
+function saveAll(){localStorage.setItem(STORE,JSON.stringify(pages));}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+function fmt(ts){
+  const d=new Date(ts);
+  return d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})+' '+
+    d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function setNav(k){
+  document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('active'));
+  const m={home:'bn-home',write:'bn-write',view:'bn-view'};
+  if(m[k])document.getElementById(m[k]).classList.add('active');
+}
+
+function goHome(){showScreen('homeScreen');setNav('home');updateStats();}
+function goWrite(){showScreen('writeScreen');setNav('write');}
+function goView(){showScreen('viewScreen');setNav('view');renderPages();}
+
+function updateStats(){
+  document.getElementById('statPages').textContent=pages.length;
+  const w=pages.reduce((a,p)=>a+(p.content.trim()?p.content.trim().split(/\s+/).length:0),0);
+  document.getElementById('statWords').textContent=w;
+}
+
+function clearWrite(){
+  document.getElementById('pageTitle').value='';
+  document.getElementById('pageContent').value='';
+  document.getElementById('charCount').textContent='0 chars';
+}
+
+function savePage(){
+  const title=document.getElementById('pageTitle').value.trim()||'untitled page ♥';
+  const content=document.getElementById('pageContent').value.trim();
+  if(!content){showToast('write something first! ♥');return;}
+  pages.unshift({id:uid(),title,content,ts:Date.now()});
+  saveAll();clearWrite();showToast('saved! ♥');
+  setTimeout(()=>goView(),600);
+}
+
+const ICONS=['🌸','🌷','🌺','🌻','💐'];
+const COLORS=['cc0','cc1','cc2','cc3','cc4'];
+
+function renderPages(){
+  const el=document.getElementById('pagesList');
+  if(!pages.length){
+    el.innerHTML=`<div class="empty-wrap pb">
+      <span class="beat" style="--dur:.75s;font-size:34px;color:var(--pink2);">♥</span>
+      <div style="display:flex;gap:10px;align-items:flex-end;justify-content:center;">
+        <div class="f-rose floating" style="width:32px;height:40px;"></div>
+        <div class="f-sun floating2" style="width:32px;height:40px;"></div>
+        <div class="f-tulip floating3" style="width:28px;height:40px;"></div>
+        <div class="f-daisy floating4" style="width:30px;height:36px;"></div>
+        <div class="f-lav floating" style="width:24px;height:40px;"></div>
+      </div>
+      <div class="empty-msg">no pages yet ♥<br>tap WRITE to begin!</div>
+    </div>`;
+    return;
+  }
+  el.innerHTML=pages.map((p,i)=>`
+    <div class="page-card ${COLORS[i%5]}" onclick="readPage('${p.id}')">
+      <div class="card-icon">${ICONS[i%5]}</div>
+      <div class="card-body">
+        <div class="card-title">${esc(p.title)}</div>
+        <div class="card-preview">${esc(p.content.slice(0,52))}${p.content.length>52?'...':''}</div>
+        <div class="card-date">♥ ${fmt(p.ts)}</div>
+      </div>
+      <button class="card-del pb2" onclick="event.stopPropagation();promptDelete('${p.id}')">🗑</button>
+    </div>`).join('');
+}
+
+function readPage(id){
+  const p=pages.find(x=>x.id===id);if(!p)return;
+  currentId=id;
+  document.getElementById('readTitle').textContent=p.title;
+  document.getElementById('readBody').textContent=p.content;
+  document.getElementById('readMeta').textContent='♥ written on '+fmt(p.ts);
+  showScreen('readScreen');setNav('');
+}
+
+function promptDelete(id){
+  deleteId=id;
+  document.getElementById('confirmOverlay').classList.add('open');
+  document.getElementById('confirmYes').onclick=()=>{
+    pages=pages.filter(p=>p.id!==deleteId);
+    saveAll();closeConfirm();
+    document.getElementById('readScreen').classList.contains('active')?goView():renderPages();
+    showToast('deleted ♥');
+  };
+}
+function closeConfirm(){document.getElementById('confirmOverlay').classList.remove('open');deleteId=null;}
+
+function toggleTheme(){
+  isDark=!isDark;
+  document.documentElement.classList.toggle('dark',isDark);
+  document.getElementById('themeBtn').textContent=isDark?'☾':'☀';
+  localStorage.setItem('pomh_dark',isDark?'1':'0');
+}
+
+let toastTimer;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+document.getElementById('pageContent').addEventListener('input',function(){
+  document.getElementById('charCount').textContent=this.value.length+' chars';
+});
+
+load();
+setTimeout(()=>{
+  const sp=document.getElementById('splash');
+  sp.classList.add('splash-out');
+  setTimeout(()=>{
+    sp.style.display='none';
+    document.getElementById('app').classList.add('show');
+    updateStats();
+  },520);
+},2800);
+</script>
+</body>
+</html>
